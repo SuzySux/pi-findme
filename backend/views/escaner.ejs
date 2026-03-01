@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/libraries/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/styles/styles.css"> 
+    <title>FindMe - Scanner</title>
+</head>
+<body class="position-absolute bottom-0 right-0 left-0 top-0">
+    <section class="position-absolute w-100 h-100"></section>
+    <section class="position-absolute w-100 h-100 d-flex flex-column justify-content-between pe-none">
+        <%- include('components/header'); %>
+        <section class="mb-5 d-flex flex-row gap-3 justify-content-center align-items-center pe-auto">
+            <a id="btnAgenda">
+                <img src="/public/assets/horario-btn.png" alt="">
+            </a>
+            <a id="btnInfo">
+                <img src="/public/assets/info-btn.png" alt="">
+            </a>
+            <a id="btnVideos">
+                <img src="/public/assets/videos-btn.png" alt="">
+            </a>
+        </section>
+    </section>
+    <section class="overflow-y-hidden position-absolute w-100 h-100 pe-none">
+        <section id="secVideos" class="position-absolute w-100 h-100 bg-color-0 d-flex flex-column align-items-center pe-auto transition hidden">
+            <a id="btnCloseVideos">Close</a>
+            <br>
+            <h1 class="txt-glow">Videos</h1>
+            <br>
+            <div class="d-flex flex-row">
+                <div></div>
+                <div class="flex-grow-1 overflow-hidden brd-color-0 brd-rd-1">
+                  <img src="/public/assets/placeholder-moony.jpg" alt="find.me logo" height="320">
+                </div>
+                <div></div>
+            </div>
+            <br>
+            <div class="d-flex flex-row gap-3 justify-content-between">
+                <img class="overflow-hidden brd-color-0 brd-rd-0" src="/public/assets/placeholder-moony.jpg" alt="find.me logo" height="80">
+                <img class="overflow-hidden brd-color-0 brd-rd-0" src="/public/assets/placeholder-moony.jpg" alt="find.me logo" height="80">
+                <img class="overflow-hidden brd-color-0 brd-rd-0" src="/public/assets/placeholder-moony.jpg" alt="find.me logo" height="80">
+            </div>
+            <br>
+            <a href="/">
+                <img src="/public/assets/info-btn.png" alt="">
+            </a>
+        </section>
+        <section id="secAgenda" class="position-absolute w-100 h-100 bg-color-0 d-flex flex-column pe-auto transition hidden">
+            <a id="btnCloseAgenda">Close</a>
+            <header class="p-3 brd-color-0 brd-clr-right brd-clr-left brd-clr-top d-flex flex-row justify-content-center">
+                <h1 class="txt-glow">Agenda</h1>
+            </header>
+            <section class="flex-grow-1 overflow-y-auto p-3 d-flex flex-column gap-3">
+                <% for(var i = 0; i < 30; i++) { %>   
+                <article class="brd-color-0 brd-rd-1 d-flex flex-row">
+                    <div class="flex-grow-1 p-3 d-flex flex-row justify-content-center align-items-center">
+                        <p class="txt-glow">vs</p>
+                    </div>
+                    <div class="px-4 py-3 d-flex flex-column gap-1">
+                        <p class="bg-color-0 text-center">Estadio BBVA</p>
+                        <p class="bg-color-0 text-center">19/07/2020</p>
+                    </div>
+                </article>
+                <% } %>
+            </section>
+        </section>
+        <section id="secInfo" class="overflow-y-auto position-absolute w-100 h-100 bg-color-0 d-flex flex-column align-items-center pe-auto transition hidden">
+            <a id="btnCloseInfo">Close</a>
+            <header class="p-3 d-flex flex-row justify-content-center">
+                <h1 class="txt-glow">Mexico</h1>
+            </header>
+            <br>
+            <article class="bg-color-1 w-75 p-3">
+                <p class="fs-3 text-center">
+                    México es el actual anfitrión de el FIFA edición 2026 (junto a Canadá y Estados Unidos). Actualmente las ciudades sede de parte del pais son: Ciudad de México, Guadalajara y Monterrey. Ha participado en 17 mundiales al momento.
+                </p>
+            </article>
+            <br>
+            <section class="w-75 d-flex flex-column gap-1">
+                <h1 class="txt-glow">Aprende de Mexico</h1>
+                <p class="mb-2">Cuantas veces a clasificado Mexico en el Mundia?</p>
+                <div class="d-flex flex-column gap-2">
+                    <p class="bg-color-2 px-3 py-1 text-center txt-black brd-rd-1">17 veces</p>
+                    <p class="bg-color-2 px-3 py-1 text-center txt-black brd-rd-1">17 veces</p>
+                </div>
+                <div class="d-flex flex-row gap-3 justify-content-center">
+                    <p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p>
+                </div>
+            </section>
+            <br>
+        </section>
+    </section>
+    <script type="module" src="/public/scripts/escaner.js"></script>
+</body>
+</html>
