@@ -1,80 +1,57 @@
+:root {
 
-*{
-    padding: 0%;
-    margin: 0%;
 }
 
+.mindar-ui-overlay { pointer-events: none; }
 
-.body-main{
+/* Cosas Generales */
+*, p, h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+
+    color: white;
+}
+
+body {
     background-color: #121920;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    
+    overflow-x: hidden;
 }
 
+/* Fondos */
+.bg-color-0 { background-color: #121920a4; }
+.bg-color-1 { background-color: #101418;}
+.bg-color-2 { background-color: #82ED9BBD;}
 
-header{
-height: 50px;
-background-color: rgba(6, 33, 43, 0.38);
-border-bottom: 1px solid #FFFBFF;
-box-shadow: 0px 4px 4px rgba(255, 255, 251, 0.25);
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 60%;
-
+/* Bordes */
+.brd-color-0 { 
+    border: 2px solid #FFFBFF; 
+    box-shadow: 0px 0px 22px 2px #78ffc899;
+}
+.brd-color-1 { 
+    border: 2px solid #FFFBFF; 
 }
 
-footer{
-    display: flex;
-    height: 104px;
-    background-image: url('/public/assets/footer.png');
-    border-top: 1px solid #FFFBFF;
-    box-shadow: 0px -4px 4px rgba(255, 255, 251, 0.25);
-}
+.brd-clr-bottom { border-bottom: 0px; }
+.brd-clr-right { border-right: 0px; }
+.brd-clr-left { border-left: 0px; }
+.brd-clr-top { border-top: 0px; }
 
+.brd-rd-0 { border-radius: 0.5rem; }
+.brd-rd-1 { border-radius: 1rem; }
+.brd-rd-f { border-radius: 100%; }
 
-#logo-f{
-    height: auto;
-    margin-bottom: 10px;
-}
+/* Textos */
+.txt-glow { text-shadow: 0 0 5px rgba(120, 255, 200, 0.6), 0 0 15px rgba(120, 255, 200, 0.4), 0 0 30px rgba(120, 255, 200, 0.3); }
 
- #compañia{
-    margin-top: 6%;
-    margin-left: 7%;
-    font-family: "Funnel Display", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 3px;
-    color: #11AA9C;
-    }
+.txt-black { color: black; }
 
-#video-info{
-    align-items: center;
-    text-align: center;
-    width: 35%;
-    margin-top: 4%;
-}
-
-#youtube-btn{
-  width: 40px;
-}
-
-#aprende{
-    margin-top: 2%;
-    color: #FFFBFF;
-    font-family: "Funnel Display", sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-}
-
-#pregunta-main{
-margin-top: 10%;
-font-family: "Funnel Display", sans-serif;
-font-weight: 400;
-font-style: normal;
-font-size: 30px;
-color: #FFFBFF;
-    text-shadow:
-        0 0 5px rgba(120, 255, 200, 0.6),
-        0 0 15px rgba(120, 255, 200, 0.4),
-        0 0 30px rgba(120, 255, 200, 0.3);
-}
-
+/* Transiciones */
+.transition { transition: all 0.5s; }
+.hidden { transform: translateY(120dvh); }
