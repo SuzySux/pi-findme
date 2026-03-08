@@ -3,6 +3,10 @@
 }
 
 .mindar-ui-overlay { pointer-events: none; }
+.mindar-ui-overlay.hidden { display: none !important; }
+
+#secVideos, #secAgenda, #secInfo { z-index: 2000; }
+/* header.position-sticky { z-index: 2001; }
 
 /* Cosas Generales */
 *, p, h1, h2, h3, h4, h5, h6 {
@@ -28,6 +32,7 @@ body {
 .bg-color-0 { background-color: #121920a4; }
 .bg-color-1 { background-color: #101418;}
 .bg-color-2 { background-color: #82ED9BBD;}
+.bg-solid { background-color: #121920; }
 
 /* Bordes */
 .brd-color-0 { 
@@ -55,3 +60,20 @@ body {
 /* Transiciones */
 .transition { transition: all 0.5s; }
 .hidden { transform: translateY(120dvh); }
+
+/* Carrusel */
+#videoScroller {
+    scroll-snap-type: x mandatory;
+    gap: 40px;
+    padding: 0 30%;
+
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+}
+#videoScroller::-webkit-scrollbar { display: none; }
+
+.video-item {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    flex-shrink: 0;
+}
