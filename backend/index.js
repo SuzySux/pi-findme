@@ -22,8 +22,9 @@ app.get('/trivia', (req, res) => { res.render('trivia'); });
 
 //await significa que js debe esperar a que la linea termine antes de ejecutar la siguiente.
 
-await server.listen(port);
-console.log(`Server is running on port ${port}`);
+server.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
 
 //fua wtf
 
