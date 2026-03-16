@@ -42,7 +42,7 @@ const d_lblTriviaQuestion = document.getElementById('lblTriviaQuestion');
 const d_btnTriviaAnwser1 = document.getElementById('btnTriviaAnwser1');
 const d_btnTriviaAnwser2 = document.getElementById('btnTriviaAnwser2');
 
-const d_arEntity = document.querySelector('[mindar-image-target]');
+const d_arEntities = document.querySelectorAll('[mindar-image-target]');
 const d_scene = document.getElementById('asc-camera');
 let isModalOpen = false;
 
@@ -86,6 +86,8 @@ d_btnCloseInfo.onclick = () => { d_secInfo.classList.add('hidden'); isModalOpen 
 d_btnCloseAgenda.onclick = () => { d_secAgenda.classList.add('hidden'); isModalOpen = false; toggleOverlay(false); controlCamera(true); };
 
 function updateQuestion() {
+    if (!d_lblTriviaQuestion || !d_btnTriviaAnwser1 || !d_btnTriviaAnwser2) return;
+
     d_lblTriviaQuestion.innerText = d_triviaQuestions[d_curQuestion].question;
 
     const d_randomAnswer = Utils.randomBool(50);
@@ -113,10 +115,11 @@ function checkAnswer(_element) {
     } else { updateQuestion(); }
 }
 
-d_btnTriviaAnwser1.onclick = checkAnswer;
-d_btnTriviaAnwser2.onclick = checkAnswer;
-
-updateQuestion();
+if (d_btnTriviaAnwser1 && d_btnTriviaAnwser2) {
+    d_btnTriviaAnwser1.onclick = checkAnswer;
+    d_btnTriviaAnwser2.onclick = checkAnswer;
+    updateQuestion();
+}
 
 // --- Lógica para el Carrusel ---
 const d_videoScroller = document.getElementById('videoScroller');
@@ -166,11 +169,62 @@ d_videoScroller.addEventListener('scroll', updateVideoVisuals);
 // Llamada inicial para acomodar la primera imagen
 updateVideoVisuals();
 
-if (d_arEntity) {
-    d_arEntity.addEventListener("targetLost", () => {
+let currentTargetIndex = null;
+let lastScannedIndex = null;
+let paisesData = null;
+
+const d_infoTitle = document.getElementById("infoTitle");
+const d_infoDesc = document.getElementById("infoDesc");
+
+fetch('/public/assets/paises.json')
+    .then(res => res.json())
+    .then(data => {
+        paisesData = data;
+        updateInfoSection();
+    })
+    .catch(err => console.error("Error loading paises.json:", err));
+
+function updateInfoSection() {
+    console.log("Intentando actualizar info. Último escaneado:", lastScannedIndex);
+    if (lastScannedIndex !== null && paisesData && paisesData[lastScannedIndex]) {
+        console.log("Actualizando con datos de:", paisesData[lastScannedIndex].name);
+        if (d_infoTitle) d_infoTitle.innerText = paisesData[lastScannedIndex].name;
+        if (d_infoDesc) d_infoDesc.innerText = paisesData[lastScannedIndex].info;
+    } else {
+        console.log("No hay bandera en memoria o faltan datos. Mostrando Placeholder.");
+        if (d_infoTitle) d_infoTitle.innerText = "¡Información!";
+        if (d_infoDesc) d_infoDesc.innerText = "Escanea un Escudo para Saber mas!";
+    }
+}
+
+d_arEntities.forEach((entity) => {
+    entity.addEventListener("targetFound", () => {
+        const targetAttr = entity.getAttribute('mindar-image-target');
+        let index = null;
+
+        // A-Frame puede devolver un objeto o un string dependiendo de su ciclo de vida
+        if (targetAttr) {
+            if (typeof targetAttr === 'object' && 'targetIndex' in targetAttr) {
+                index = targetAttr.targetIndex;
+            } else if (typeof targetAttr === 'string') {
+                const match = targetAttr.match(/targetIndex:\s*(\d+)/);
+                if (match) index = match[1];
+            }
+        }
+
+        if (index !== null) {
+            currentTargetIndex = index.toString();
+            lastScannedIndex = index.toString(); // Guardamos en la memoria el último escaneado
+            console.log("¡Cámara detectó bandera! Índice:", currentTargetIndex);
+            updateInfoSection();
+        }
+    });
+
+    entity.addEventListener("targetLost", () => {
+        currentTargetIndex = null;
         if (!isModalOpen) toggleOverlay(false);
     });
-}
+});
 
 // Pixel Effecto
 const d_btnEffectPixel = document.getElementById('btnEffectPixel');
