@@ -18,6 +18,7 @@ app.use('/public', express.static(path.join(__dirname, '../frontend')));
 
 app.get('/', (req, res) => { res.render('index'); });
 app.get('/scanner', (req, res) => { res.render('escaner'); });
+app.get('/trivia', (req, res) => { res.render('trivia'); });
 
 //await significa que js debe esperar a que la linea termine antes de ejecutar la siguiente.
 
