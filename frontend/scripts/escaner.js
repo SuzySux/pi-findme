@@ -264,3 +264,68 @@ if (d_btnEffectChromatic) {
         }
     };
 }
+
+//Particulas
+
+const coloresBanderas = {
+    "0": ["#AA151B", "#F1BF00"], // España
+    "1": ["#FFFFFF", "#CD2E3A", "#0047A0", "#000000"], // Corea
+    "2": ["#006847", "#FFFFFF", "#CE1126"], // México
+    "3": ["#FCD116", "#003893", "#CE1126"], // Colombia
+    "4": ["#004B87", "#FFCD00"], // Suecia
+    "5": ["#007FFF", "#CE1021", "#F7D618"], // RD Congo
+    "6": ["#C60C30", "#FFFFFF"], // Dinamarca
+    "7": ["#0099B5", "#FFFFFF", "#1EB53A", "#CE1126"], // Uzbekistán
+    "8": ["#0038A8", "#FFFFFF", "#FCD116"], // Uruguay
+    "9": ["#E70013", "#FFFFFF"], // Túnez
+    "10": ["#007749", "#FFB81C", "#FFFFFF", "#E03C31", "#001489", "#000000"], // Sudáfrica
+    "11": ["#FFFFFF", "#BC002D"] // Japón
+};
+
+function spawnFireworks(index) {
+    const activeEntity = document.querySelector(`[mindar-image-target="targetIndex: ${index}"]`);
+    if (!activeEntity) return;
+
+    const colores = coloresBanderas[index] || ["#FFFFFF", "#FFD700", "#FF4500"];
+    const numParticulas = 30; 
+
+    for (let i = 0; i < numParticulas; i++) {
+        const particle = document.createElement('a-sphere');
+        const color = colores[Math.floor(Math.random() * colores.length)];
+        
+        
+        const angle1 = Math.random() * Math.PI * 2;
+        const angle2 = Math.random() * Math.PI * 2;
+        const radius = Math.random() * 1.5 + 0.5; 
+        
+        const dx = radius * Math.sin(angle1) * Math.cos(angle2);
+        const dy = radius * Math.sin(angle1) * Math.sin(angle2) + 0.5; 
+        const dz = radius * Math.cos(angle1);
+
+        particle.setAttribute('radius', (Math.random() * 0.04 + 0.02).toString()); 
+        particle.setAttribute('color', color);
+        particle.setAttribute('position', '0 0 0');
+        particle.setAttribute('material', 'transparent: true; opacity: 1; shader: flat;'); 
+
+        particle.setAttribute('animation__pos', `property: position; to: ${dx} ${dy} ${dz}; dur: 1000; easing: easeOutQuad;`);
+        particle.setAttribute('animation__fade', `property: material.opacity; to: 0; dur: 1000; easing: easeInQuad;`);
+
+        activeEntity.appendChild(particle);
+
+        setTimeout(() => {
+            if (particle.parentNode === activeEntity) {
+                activeEntity.removeChild(particle);
+            }
+        }, 1050);
+    }
+}
+
+document.addEventListener('click', (e) => {
+    if (isModalOpen) return;
+    const targetTag = e.target.tagName.toLowerCase();
+    if (targetTag === 'a' || targetTag === 'img' || targetTag === 'button') return;
+
+    if (currentTargetIndex !== null) {
+        spawnFireworks(currentTargetIndex);
+    }
+});
