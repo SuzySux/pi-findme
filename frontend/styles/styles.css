@@ -77,3 +77,8 @@ body {
     scroll-snap-stop: always;
     flex-shrink: 0;
 }
+
+/* Color de fondo para tus botones de respuesta */
+.bg-color-2, .ans-btn {
+    background-color: #5EC686 !important; /* El color verde de tu imagen */
+}
