@@ -5,15 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/libraries/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/public/styles/styles.css"> 
+
     <title>FindMe - Trivia</title>
 </head>
-<body>
+<body class="min-vh-100 d-flex flex-column">
     <%- include('components/header'); %>
-    <main class="overflow-y-auto flex-grow-1 d-flex flex-column">
-        <section class="flex-grow-1">
+    
+   <main class="flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+<section id="trivia" class="w-75 d-flex flex-column mx-auto text-white" style="height: 450px;"> <div class="text-center py-3">
+        <h1 class="txt-glow">Aprende del mundial en México</h1>
+    </div>
 
-        </section>
-        <%- include('components/footer'); %>
-    </main>
+    <div id="questionContainer" class="d-flex align-items-center justify-content-center" style="min-height: 110px;">
+        <p id="lblTriviaQuestion" class="mb-0 text-center fs-4"></p> 
+    </div>
+    
+    <div id="btnGroup" class="d-flex flex-column gap-2 text-center w-100 mt-2">
+        <button id="btnTriviaAnwser1" class="ans-btn py-2 txt-black brd-rd-1 border-0 w-100"></button>
+        <button id="btnTriviaAnwser2" class="ans-btn py-2 txt-black brd-rd-1 border-0 w-100"></button>
+        <button id="btnTriviaAnwser3" class="ans-btn py-2 txt-black brd-rd-1 border-0 w-100"></button>
+    </div>
+
+    <div id="spacer" class="flex-grow-1" style="transition: all 0.8s ease-in-out; max-height: 200px;"></div>
+    
+    <div id="triviaProgress" class="d-flex flex-row gap-1 justify-content-center flex-nowrap w-100 px-3 py-3">
+    </div>
+</section>
+</main>
+
+    <%- include('components/footer'); %>
+
+    <script src="/public/libraries/bootstrap/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/public/scripts/trivia.js"></script>
 </body>
 </html>

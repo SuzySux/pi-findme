@@ -1,6 +1,6 @@
 import { Utils } from "../helpers/utils.js";
 
-const d_triviaQuestions = [
+/*const d_triviaQuestions = [
     {
         question: "¿Cuantas veces a clasificado Mexico en el Mundial?",
         correct: "17 veces",
@@ -24,7 +24,7 @@ const d_triviaQuestions = [
 ];
 
 var d_curQuestion = 0;
-var d_correctQuestions = 0;
+var d_correctQuestions = 0; */
 
 const d_secVideos = document.getElementById("secVideos");
 const d_secInfo = document.getElementById("secInfo");
@@ -37,10 +37,10 @@ const d_btnAgenda = document.getElementById("btnAgenda");
 const d_btnCloseVideos = document.getElementById("btnCloseVideos");
 const d_btnCloseInfo = document.getElementById("btnCloseInfo");
 const d_btnCloseAgenda = document.getElementById("btnCloseAgenda");
-
+/*
 const d_lblTriviaQuestion = document.getElementById('lblTriviaQuestion');
 const d_btnTriviaAnwser1 = document.getElementById('btnTriviaAnwser1');
-const d_btnTriviaAnwser2 = document.getElementById('btnTriviaAnwser2');
+const d_btnTriviaAnwser2 = document.getElementById('btnTriviaAnwser2'); */
 
 const d_arEntities = document.querySelectorAll('[mindar-image-target]');
 const d_scene = document.getElementById('asc-camera');
@@ -85,7 +85,7 @@ d_btnCloseVideos.onclick = () => { d_secVideos.classList.add('hidden'); isModalO
 d_btnCloseInfo.onclick = () => { d_secInfo.classList.add('hidden'); isModalOpen = false; toggleOverlay(false); controlCamera(true); };
 d_btnCloseAgenda.onclick = () => { d_secAgenda.classList.add('hidden'); isModalOpen = false; toggleOverlay(false); controlCamera(true); };
 
-function updateQuestion() {
+/*function updateQuestion() {
     if (!d_lblTriviaQuestion || !d_btnTriviaAnwser1 || !d_btnTriviaAnwser2) return;
 
     d_lblTriviaQuestion.innerText = d_triviaQuestions[d_curQuestion].question;
@@ -113,14 +113,14 @@ function checkAnswer(_element) {
         d_btnTriviaAnwser1.remove();
         d_btnTriviaAnwser2.remove();
     } else { updateQuestion(); }
-}
+} 
 
 if (d_btnTriviaAnwser1 && d_btnTriviaAnwser2) {
     d_btnTriviaAnwser1.onclick = checkAnswer;
     d_btnTriviaAnwser2.onclick = checkAnswer;
     updateQuestion();
-}
-
+} */
+ 
 // --- Lógica para el Carrusel ---
 const d_videoScroller = document.getElementById('videoScroller');
 const d_videoItems = d_videoScroller.querySelectorAll('.video-item');
