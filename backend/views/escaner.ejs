@@ -112,17 +112,37 @@
                 <h1 class="txt-glow">Agenda</h1>
             </header>
             <section class="flex-grow-1 overflow-y-auto p-3 d-flex flex-column gap-3">
-                <% for(var i=0; i < 30; i++) { %>
-                    <article class="brd-color-0 brd-rd-1 d-flex flex-row">
-                        <div class="flex-grow-1 p-3 d-flex flex-row justify-content-center align-items-center">
-                            <p class="txt-glow">vs</p>
+                <% 
+                const agendaMatches = [
+                    { f1: 'Mexico', f2: 'Sudafrica', stBg: 'Azteca', date: '11 de junio', time: '13:00', stadium: 'Estadio Azteca', city: 'CDMX', note: '(Inauguración)' },
+                    { f1: 'Corea', f2: 'Rep_Checa', stBg: 'Akron', date: '11 de junio', time: '20:00', stadium: 'Estadio Guadalajara (Akron)', city: 'Zapopan' },
+                    { f1: 'Suecia', f2: 'Tunez', stBg: 'BBVA', date: '14 de junio', time: '20:00', stadium: 'Estadio Monterrey (BBVA)', city: 'Guadalupe' },
+                    { f1: 'Uzbekistan', f2: 'Colombia', stBg: 'Azteca', date: '17 de junio', time: '20:00', stadium: 'Estadio Azteca', city: 'CDMX' },
+                    { f1: 'Mexico', f2: 'Corea', stBg: 'Akron', date: '18 de junio', time: '19:00', stadium: 'Estadio Guadalajara (Akron)', city: 'Zapopan' },
+                    { f1: 'Tunez', f2: 'Japon', stBg: 'BBVA', date: '20 de junio', time: '22:00', stadium: 'Estadio Monterrey (BBVA)', city: 'Guadalupe' },
+                    { f1: 'Colombia', f2: 'RD_Congo', stBg: 'Akron', date: '23 de junio', time: '20:00', stadium: 'Estadio Guadalajara (Akron)', city: 'Zapopan' },
+                    { f1: 'Mexico', f2: 'Rep_Checa', stBg: 'Azteca', date: '24 de junio', time: '19:00', stadium: 'Estadio Azteca', city: 'CDMX' },
+                    { f1: 'Sudafrica', f2: 'Corea', stBg: 'BBVA', date: '24 de junio', time: '19:00', stadium: 'Estadio Monterrey (BBVA)', city: 'Guadalupe' },
+                    { f1: 'Uruguay', f2: 'España', stBg: 'Akron', date: '26 de junio', time: '18:00', stadium: 'Estadio Guadalajara (Akron)', city: 'Zapopan' }
+                ];
+                agendaMatches.forEach(match => { 
+                %>
+                    <article class="agenda-item brd-color-0 brd-rd-1 d-flex flex-row position-relative overflow-hidden bg-<%= match.stBg %>">
+                        <div class="agenda-overlay position-absolute w-100 h-100 pe-none"></div>
+                        <div class="p-2 d-flex flex-row justify-content-center align-items-center gap-2 position-relative z-1" style="flex-basis: 40%;">
+                            <img src="/public/assets/flags/<%= match.f1 %>.png" alt="<%= match.f1 %>" class="agenda-flag">
+                            <p class="txt-glow m-0 fw-bold fs-6">VS</p>
+                            <img src="/public/assets/flags/<%= match.f2 %>.png" alt="<%= match.f2 %>" class="agenda-flag">
                         </div>
-                        <div class="px-4 py-3 d-flex flex-column gap-1">
-                            <p class="bg-color-0 text-center">Estadio BBVA</p>
-                            <p class="bg-color-0 text-center">19/07/2020</p>
+                        <div class="p-2 d-flex flex-column gap-1 position-relative z-1 justify-content-center" style="flex-basis: 60%;">
+                            <p class="bg-color-0 text-center m-0 px-1 py-1 brd-rd-0 fs-7"><%= match.stadium %>, <%= match.city %></p>
+                            <p class="bg-color-0 text-center m-0 px-1 py-1 brd-rd-0 fs-7 fw-bold" style="color: #82ED9B;"><%= match.date %> - <%= match.time %></p>
+                            <% if(match.note) { %>
+                                <p class="bg-color-0 text-center m-0 px-1 brd-rd-0 fs-8 text-warning"><%= match.note %></p>
+                            <% } %>
                         </div>
                     </article>
-                    <% } %>
+                <% }) %>
             </section>
         </section>
         <section id="secInfo"

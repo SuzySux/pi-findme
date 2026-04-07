@@ -82,3 +82,31 @@ body {
 .bg-color-2, .ans-btn {
     background-color: #5EC686 !important; /* El color verde de tu imagen */
 }
+
+/* --- Agenda Estilos --- */
+.agenda-item {
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    min-height: 130px;
+}
+
+/* Fondos de los Estadios (Ajusta la extension a .png si es necesario) */
+.bg-Azteca { background-image: url('/public/assets/Stadiums/Azteca.jpg'); }
+.bg-Akron { background-image: url('/public/assets/Stadiums/Akron.jpg'); }
+.bg-BBVA { background-image: url('/public/assets/Stadiums/BBVA.jpg'); }
+
+/* Efecto de desvanecimiento de izquierda a derecha sobre el estadio */
+.agenda-overlay {
+    background: linear-gradient(to right, transparent 15%, rgba(18, 25, 32, 0.85) 60%, #121920 100%);
+}
+
+.agenda-flag {
+    width: 35px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.fs-7 { font-size: 0.75rem; }
+.fs-8 { font-size: 0.65rem; }
