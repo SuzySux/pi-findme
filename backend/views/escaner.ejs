@@ -59,8 +59,13 @@
         </a-scene>
     </section>
     <section class="position-absolute w-100 h-100 d-flex flex-column justify-content-between pe-none">
-        <%- include('components/header'); %>
-            <section class="mb-5 d-flex flex-row gap-3 justify-content-center align-items-center pe-auto">
+        <div class="w-100 pe-none">
+            <%- include('components/header'); %>
+            <a id="btnToggleAnim" class="pe-auto ms-3 mt-3 d-inline-block transition" style="cursor: pointer;">
+                <img id="toggleAnimIcon" src="/public/assets/pause.png" alt="Toggle Animation" height="45">
+            </a>
+        </div>
+            <section class="mb-5 d-flex flex-row gap-3 justify-content-center align-items-center pe-auto position-relative">
                 <a id="btnAgenda">
                     <img src="/public/assets/horario-btn.png" alt="">
                 </a>

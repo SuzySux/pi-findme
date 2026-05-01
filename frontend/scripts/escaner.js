@@ -37,6 +37,8 @@ const d_btnAgenda = document.getElementById("btnAgenda");
 const d_btnCloseVideos = document.getElementById("btnCloseVideos");
 const d_btnCloseInfo = document.getElementById("btnCloseInfo");
 const d_btnCloseAgenda = document.getElementById("btnCloseAgenda");
+const d_btnToggleAnim = document.getElementById("btnToggleAnim");
+const d_toggleAnimIcon = document.getElementById('toggleAnimIcon');
 /*
 const d_lblTriviaQuestion = document.getElementById('lblTriviaQuestion');
 const d_btnTriviaAnwser1 = document.getElementById('btnTriviaAnwser1');
@@ -84,6 +86,21 @@ d_btnAgenda.onclick = () => {
 d_btnCloseVideos.onclick = () => { d_secVideos.classList.add('hidden'); isModalOpen = false; toggleOverlay(false); controlCamera(true); };
 d_btnCloseInfo.onclick = () => { d_secInfo.classList.add('hidden'); isModalOpen = false; toggleOverlay(false); controlCamera(true); };
 d_btnCloseAgenda.onclick = () => { d_secAgenda.classList.add('hidden'); isModalOpen = false; toggleOverlay(false); controlCamera(true); };
+
+// --- Lógica de Pausa/Reanudar Animación 3D ---
+let isAnimPaused = false;
+if (d_btnToggleAnim && d_toggleAnimIcon) {
+    d_btnToggleAnim.onclick = () => {
+        isAnimPaused = !isAnimPaused;
+        d_toggleAnimIcon.src = isAnimPaused ? '/public/assets/play.png' : '/public/assets/pause.png';
+
+        const models = document.querySelectorAll('a-gltf-model');
+        models.forEach(model => {
+            // Manipulamos el timeScale para pausar (0) o reproducir (1)
+            model.setAttribute('animation-mixer', 'timeScale', isAnimPaused ? 0 : 1);
+        });
+    };
+}
 
 /*function updateQuestion() {
     if (!d_lblTriviaQuestion || !d_btnTriviaAnwser1 || !d_btnTriviaAnwser2) return;
