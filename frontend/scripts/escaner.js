@@ -1,31 +1,5 @@
 import { Utils } from "../helpers/utils.js";
 
-/*const d_triviaQuestions = [
-    {
-        question: "¿Cuantas veces a clasificado Mexico en el Mundial?",
-        correct: "17 veces",
-        incorrect: "5 veces"
-    },
-    {
-        question: "¿Cuál fue el primer mundial de FIFA en el que participó México?",
-        correct: "Uruguay 1930",
-        incorrect: "Alemania 2006"
-    },
-    {
-        question: "¿En que mundial México utilizó un diferente uniforme?",
-        correct: "Brazil 2014",
-        incorrect: "Brazil 1950"
-    },
-    {
-        question: "¿Después de que mundial se empezó a traer chefs para cocinarles?",
-        correct: "Estados Unidos 1994",
-        incorrect: "Suiza 1954"
-    }
-];
-
-var d_curQuestion = 0;
-var d_correctQuestions = 0; */
-
 const d_secVideos = document.getElementById("secVideos");
 const d_secInfo = document.getElementById("secInfo");
 const d_secAgenda = document.getElementById("secAgenda");
@@ -39,10 +13,6 @@ const d_btnCloseInfo = document.getElementById("btnCloseInfo");
 const d_btnCloseAgenda = document.getElementById("btnCloseAgenda");
 const d_btnToggleAnim = document.getElementById("btnToggleAnim");
 const d_toggleAnimIcon = document.getElementById('toggleAnimIcon');
-/*
-const d_lblTriviaQuestion = document.getElementById('lblTriviaQuestion');
-const d_btnTriviaAnwser1 = document.getElementById('btnTriviaAnwser1');
-const d_btnTriviaAnwser2 = document.getElementById('btnTriviaAnwser2'); */
 
 const d_arEntities = document.querySelectorAll('[mindar-image-target]');
 const d_scene = document.getElementById('asc-camera');
@@ -92,7 +62,7 @@ let isAnimPaused = false;
 if (d_btnToggleAnim && d_toggleAnimIcon) {
     d_btnToggleAnim.onclick = () => {
         isAnimPaused = !isAnimPaused;
-        d_toggleAnimIcon.src = isAnimPaused ? '/public/assets/play.png' : '/public/assets/pause.png';
+        d_toggleAnimIcon.src = isAnimPaused ? '/public/assets/Play.png' : '/public/assets/pause.png';
 
         const models = document.querySelectorAll('a-gltf-model');
         models.forEach(model => {
@@ -102,41 +72,6 @@ if (d_btnToggleAnim && d_toggleAnimIcon) {
     };
 }
 
-/*function updateQuestion() {
-    if (!d_lblTriviaQuestion || !d_btnTriviaAnwser1 || !d_btnTriviaAnwser2) return;
-
-    d_lblTriviaQuestion.innerText = d_triviaQuestions[d_curQuestion].question;
-
-    const d_randomAnswer = Utils.randomBool(50);
-    const d_correctAnswer = [d_btnTriviaAnwser1, d_btnTriviaAnwser2][d_randomAnswer ? 1 : 0];
-    const d_correctIncorrect = [d_btnTriviaAnwser1, d_btnTriviaAnwser2][d_randomAnswer ? 0 : 1];
-
-    d_correctAnswer.innerText  = d_triviaQuestions[d_curQuestion].correct;
-    d_correctAnswer.dataset.isCorrect = true;
-    
-    d_correctIncorrect.innerText = d_triviaQuestions[d_curQuestion].incorrect;
-    d_correctIncorrect.dataset.isCorrect = false;
-}
-
-function checkAnswer(_element) {
-    const l_isCorrect = _element.target.dataset.isCorrect == "true";
-    if (l_isCorrect) { d_correctQuestions++; } 
-
-    d_curQuestion++;
-
-    if (d_curQuestion >= d_triviaQuestions.length) {
-        d_lblTriviaQuestion.innerText = `Respuestas Correctas: ${d_correctQuestions}/${d_triviaQuestions.length}`;
-
-        d_btnTriviaAnwser1.remove();
-        d_btnTriviaAnwser2.remove();
-    } else { updateQuestion(); }
-} 
-
-if (d_btnTriviaAnwser1 && d_btnTriviaAnwser2) {
-    d_btnTriviaAnwser1.onclick = checkAnswer;
-    d_btnTriviaAnwser2.onclick = checkAnswer;
-    updateQuestion();
-} */
  
 // --- Lógica para el Carrusel ---
 const d_videoScroller = document.getElementById('videoScroller');
@@ -186,6 +121,7 @@ d_videoScroller.addEventListener('scroll', updateVideoVisuals);
 // Llamada inicial para acomodar la primera imagen
 updateVideoVisuals();
 
+//Logica Escaner
 let currentTargetIndex = null;
 let lastScannedIndex = null;
 let paisesData = null;
